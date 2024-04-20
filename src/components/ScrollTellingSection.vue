@@ -22,20 +22,16 @@ export default {
             ]
         };
     },
-    updated() {
-        this.$nextTick(() => {
-            if (Array.isArray(this.$refs.steps) && this.$refs.steps.length > 0) {
-                this.scroller = scrollama();
-                this.scroller.setup({
-                    step: this.$refs.steps.map(ref => ref.offsetHeight),
-                    offset: 0.5,
-                    debug: true
-                }).onStepEnter(this.handleStepEnter);
-            } else {
-                console.error("No valid steps found.");
-            }
-        });
-    },
+    mounted() {
+    this.$nextTick(() => {
+            this.scroller = scrollama();
+            this.scroller.setup({
+                step: '.step',
+                offset: 0.5,
+                debug: false
+            }).onStepEnter(this.handleStepEnter);
+    });
+},
     methods: {
         handleStepEnter(response) {
             if (response.element) {
@@ -44,7 +40,6 @@ export default {
         }
     }
 };
-
 </script>
 
 <style scoped>
