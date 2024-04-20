@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <ScrollTellingSection/>
+  </div>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ScrollTellingSection from './components/ScrollTellingSection.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ScrollTellingSection
   }
 }
 </script>
