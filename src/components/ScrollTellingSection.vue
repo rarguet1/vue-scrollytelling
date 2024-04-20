@@ -22,21 +22,29 @@ export default {
             ]
         };
     },
-    mounted() {
-        this.scroller = scrollama();
-        this.scroller.setup({
-            step: this.$refs.steps.map(ref => ref.$el),
-            offset: 0.5,
-            debug: true
-        })
-            .onStepEnter(this.handleStepEnter);
+    updated() {
+        this.$nextTick(() => {
+            if (Array.isArray(this.$refs.steps) && this.$refs.steps.length > 0) {
+                this.scroller = scrollama();
+                this.scroller.setup({
+                    step: this.$refs.steps.map(ref => ref.offsetHeight),
+                    offset: 0.5,
+                    debug: true
+                }).onStepEnter(this.handleStepEnter);
+            } else {
+                console.error("No valid steps found.");
+            }
+        });
     },
     methods: {
         handleStepEnter(response) {
-            console.log('Entering:', response.element.textContent);
+            if (response.element) {
+                console.log('Entering:', response.element.textContent);
+            }
         }
     }
 };
+
 </script>
 
 <style scoped>
