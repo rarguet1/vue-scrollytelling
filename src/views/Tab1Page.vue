@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import { ScrollamaWrapper } from 'vue-scrollama'; // Import the ScrollamaWrapper component
 
 export default {

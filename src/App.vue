@@ -1,17 +1,44 @@
 <template>
-  <div id="app">
+  <v-app id="app">
+    <semipolar-spinner :animation-duration="2000" :size="65" color="#1e90ff" />
     <TabNavigation />
-    <ScrollTellingSection />
-  </div>
+    <v-main>
+      <ScrollTellingSection />
+    </v-main>
+    <v-footer color="primary" class="elevation-3" padless>
+      <v-container fluid>
+        <v-tabs grow class="white--text">
+          <v-tab v-for="link in links" :key="link.title" :to="link.to">
+            {{ link.title }}
+          </v-tab>
+        </v-tabs>
+      </v-container>
+    </v-footer>
+  </v-app>
 </template>
 
+
+
 <script>
+import { VFooter } from 'vuetify/lib/components/index.mjs';
 import TabNavigation from './components/TabNavigation.vue'
+import { SemipolarSpinner  } from 'epic-spinners'
 
 export default {
   name: 'App',
   components: {
     TabNavigation,
+    VFooter,
+    SemipolarSpinner,
+  },
+  data() {
+    return {
+      links: [
+        { title: 'Home', to: '/Home' },
+        { title: 'About Us', to: '/AboutUs' },
+        { title: 'Team', to: '/Ourteam' },
+      ],
+    };
   },
   methods: {
     // Debounce function to delay execution of a function
@@ -50,7 +77,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #9c1691;
-  margin-top: 60px;
+  align-items: center;
+  margin-top: 50px;
 }
 </style>

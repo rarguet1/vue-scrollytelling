@@ -4,12 +4,30 @@ import Tab2Page from '../views/Tab2Page.vue';
 import Tab3Page from '../views/Tab3Page.vue';
 import Tab4Page from '../views/Tab4Page.vue';
 import Tab5Page from '../views/Tab5Page.vue';
+import HomePage from '../views/HomePage.vue'
+import OurTeam from '../views/OurTeam.vue'
+import AboutUs from '../views/AboutUs.vue'
 import { ScrollamaWrapper } from 'vue-scrollama';
 
 const routes = [
   {
+    path: '/Home',
+    name: 'Home',
+    component: HomePage,
+  },
+  {
+    path: '/AboutUs',
+    name: 'AboutUs',
+    component: AboutUs,
+  },
+  {
+    path: '/Ourteam',
+    name: 'OurTeam',
+    component: OurTeam,
+  },
+  {
     path: '/',
-    redirect: '/tab1' // Redirect to the first tab when the root path is accessed
+    redirect: '/Home' // Redirect to the first tab when the root path is accessed
   },
   {
     path: '/tab1',
