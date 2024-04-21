@@ -1,19 +1,37 @@
 <template>
   <v-app id="app">
-    <semipolar-spinner :animation-duration="2000" :size="65" color="#1e90ff" />
-    <TabNavigation />
+    <semipolar-spinner :animation-duration="2000" :size="65" color="#880E4F" />
+    
+    <!-- Tab Navigation wrapped in a container to control width -->
+    <v-container class="px-4" style="max-width: 80%; margin: auto;">
+      <TabNavigation />
+    </v-container>
+    
     <v-main>
       <ScrollTellingSection />
     </v-main>
-    <v-footer color="primary" class="elevation-3" padless>
-      <v-container fluid>
-        <v-tabs grow class="white--text">
-          <v-tab v-for="link in links" :key="link.title" :to="link.to">
-            {{ link.title }}
-          </v-tab>
-        </v-tabs>
-      </v-container>
-    </v-footer>
+    
+    <!-- Footer with controlled width -->
+    <v-footer color="transparent" class="elevation-3">
+    <v-container 
+      class="pa-3" 
+      :style="{
+        maxWidth: '80%', 
+        margin: 'auto', 
+        backgroundColor: '#880E4F',
+      }" 
+    >
+      <v-tabs grow class="white--text">
+        <v-tab 
+          v-for="link in links" 
+          :key="link.title" 
+          :to="link.to"
+        >
+          {{ link.title }}
+        </v-tab>
+      </v-tabs>
+    </v-container>
+  </v-footer>
   </v-app>
 </template>
 
@@ -78,6 +96,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
+
+.v-tab {
+  color: #FFF !important; /* This ensures the text is white and overrides other styles */
+}
+
 </style>

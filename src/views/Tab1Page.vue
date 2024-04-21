@@ -31,8 +31,10 @@ export default {
 
 <style scoped>
 .step {
-  margin-bottom: 100vh; /* Ensures each step occupies enough vertical space to scroll through */
-  height: 50vh; /* Height of each step for visibility during scroll */
+  margin-bottom: 100vh;
+  /* Ensures each step occupies enough vertical space to scroll through */
+  height: 50vh;
+  /* Height of each step for visibility during scroll */
   display: flex;
   align-items: center;
   justify-content: center;
