@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pa-0" :style="{ backgroundImage: 'url(' + require('@/assets/miata2.gif') + ')' }" style="height: 100vh; 
-    background-size: 22%;
+    background-size: 20%;
     /* background-size: 80%;  */
     /* background-repeat: no-repeat; */
     background-position: center center; padding-top: 20px;">
