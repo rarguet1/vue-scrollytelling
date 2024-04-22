@@ -3,7 +3,7 @@
     <semipolar-spinner :animation-duration="2000" :size="65" color="#880E4F" />
     
     <!-- Tab Navigation wrapped in a container to control width -->
-    <v-container class="px-4" style="max-width: 80%; margin: auto;">
+    <v-container class="px-4" style="max-width: 85%; margin: auto;">
       <TabNavigation />
     </v-container>
     
@@ -16,7 +16,7 @@
     <v-container 
       class="pa-3" 
       :style="{
-        maxWidth: '80%', 
+        maxWidth: '85%', 
         margin: 'auto', 
         backgroundColor: '#880E4F',
       }" 
