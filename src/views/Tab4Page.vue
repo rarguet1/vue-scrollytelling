@@ -51,6 +51,11 @@ function handleStepEnter({ element }) {
   flex-direction: column;
 }
 
+.content{
+  padding-right: 5%;
+  padding-left: 1%;
+}
+
 .step {
   padding-top: 50px;
   min-height: 400px;

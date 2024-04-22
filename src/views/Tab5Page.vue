@@ -86,8 +86,14 @@ function handleStepEnter({ element }) {
   flex-direction: column;
 }
 
+.content{
+  padding-right: 5%;
+  padding-left: 1%;
+}
+
 .step {
   padding-top: 50px;
+  padding-right: 50px;
   min-height: 400px;
   margin-bottom: 100vh;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -103,8 +109,9 @@ function handleStepEnter({ element }) {
 .scrollama-container .step p {
   text-indent: 0;
   margin-left: 0;
-  padding-right: 1.2em; /* Adjust this as needed to align with the text above */
-  line-height: 1.2;
+  padding-right: 1.3em; /* Adjust this as needed to align with the text above */
+  line-height: 1.6;
+
 }
 
 </style>
