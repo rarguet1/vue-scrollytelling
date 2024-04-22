@@ -30,6 +30,11 @@
   </script>
   
   <style scoped>
-  /* Add styles here to fit the branding and design of your company */
+  .body-1 {
+  text-indent: 0;
+  margin-left: 0;
+  padding-right: 1.2em; /* Adjust this as needed to align with the text above */
+  line-height: 1.2;
+}
   </style>
   
