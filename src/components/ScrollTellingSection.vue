@@ -1,56 +1,51 @@
 <template>
-    <div ref="scrollContainer">
-        <div v-for="(step, index) in steps" :key="index" ref="steps" class="step">
-            <h2>{{ step.title }}</h2>
-            <p>{{ step.content }}</p>
+    <div>
+      <VueScrollama
+          :debug="false"
+          :offset="0.5"
+          @step-enter="handleStepEnter"
+          class="scrollama-container"
+      >
+        <div
+            v-for="(step, index) in steps"
+            :key="index"
+            class="step"
+            :data-step-no="index + 1"
+        >
+          <h2>{{ step.title }}</h2>
+          <p>{{ step.content }}</p>
         </div>
+      </VueScrollama>
+      <div v-if="currentStep">Current step is: {{ currentStep }}</div>
     </div>
-</template>
+  </template>
 
-<script>
-import scrollama from 'scrollama';
+<script setup>
+import { ref } from 'vue';
+import VueScrollama from 'vue3-scrollama';
 
-export default {
-    name: 'ScrollTellingSection',
-    data() {
-        return {
-            scroller: null,
-            steps: [
-                { title: 'Step 1', content: 'Content for step 1.' },
-                { title: 'Step 2', content: 'Content for step 2.' },
-                { title: 'Step 3', content: 'Content for step 3.' }
-            ]
-        };
-    },
-    mounted() {
-    this.$nextTick(() => {
-            this.scroller = scrollama();
-            this.scroller.setup({
-                step: '.step',
-                offset: 0.5,
-                debug: false
-            }).onStepEnter(this.handleStepEnter);
-    });
-},
-    methods: {
-        handleStepEnter(response) {
-            if (response.element) {
-                console.log('Entering:', response.element.textContent);
-            }
-        }
-    }
-};
+const currentStep = ref(null);
+const steps = [
+  { title: 'Step 1', content: 'Content for step 1.' },
+  { title: 'Step 2', content: 'Content for step 2.' },
+  { title: 'Step 3', content: 'Content for step 3.' },
+  // Add more steps as needed...
+];
+
+function handleStepEnter({ element }) {
+  currentStep.value = element.dataset.stepNo;
+}
+</script>
+
 </script>
 
 <style scoped>
-.step {
-    margin-bottom: 100vh;
-    /* Ensures each step occupies enough vertical space to scroll through */
-    height: 50vh;
-    /* Height of each step for visibility during scroll */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.scrollama-container {
+  margin-bottom: 100vh;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
