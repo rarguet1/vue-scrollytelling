@@ -1,8 +1,8 @@
 <template>
   <div>
     <VueScrollama
-      :debug="false"  
-      :offset="0.5"
+      :debug="false" 
+      :offset="0.2"
       @step-enter="handleStepEnter"
       class="scrollama-container"
     >
@@ -14,7 +14,7 @@
         :data-step-no="index + 1"
       >
         <h2>{{ step.title }}</h2>
-        <p v-html="step.content"></p>      
+        <div v-html="step.content" class="content"></div>      
       </v-col>
     </VueScrollama>
   </div>
@@ -22,17 +22,12 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import { VCol } from 'vuetify/components';
-import { onMounted } from 'vue';
-
-onMounted(() => {
-  currentStep.value = '1'; 
-});
-
 
 const currentStep = ref(null);
+
 
 // This is where you can add the titles for your sections
 const steps = [
@@ -75,11 +70,14 @@ const steps = [
   content: `In this exploration, we’ve seen how even the most whimsical measurements can provide insights and make data visualization more engaging.`
   },
 ];
+onMounted(() => {
+  currentStep.value = '1';  // Set the first step active
+});
 
 function handleStepEnter({ element }) {
-  console.log("Step Entered:", element.dataset.stepNo);  // Logging to see when steps are entered
   currentStep.value = element.dataset.stepNo;
 }
+
 </script>
 
 <style scoped>
@@ -89,9 +87,11 @@ function handleStepEnter({ element }) {
 }
 
 .step {
+  padding-top: 50px;
+  min-height: 400px;
   margin-bottom: 100vh;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: translateY(20px); /* Start slightly translated down */
+  transform: translateY(20px); 
   opacity: 0.5; /* Start with a lower opacity */
 }
 
@@ -100,11 +100,11 @@ function handleStepEnter({ element }) {
   opacity: 1; /* Fully visible when active */
 }
 
-.scrollama-container .step p,
-.scrollama-container .step ul {
+.scrollama-container .step p {
   text-indent: 0;
   margin-left: 0;
-  padding-left: 1em; /* Adjust this as needed to align with the text above */
+  padding-right: 1.2em; /* Adjust this as needed to align with the text above */
+  line-height: 1.2;
 }
 
 </style>

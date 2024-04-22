@@ -103,4 +103,17 @@ export default {
   color: #FFF !important; /* This ensures the text is white and overrides other styles */
 }
 
+/* Global styles */
+.scrollama-container .step .content ul {
+  width: 15%;
+  padding: 10px;
+  margin: auto;
+  list-style-type: disc;
+}
+
+.scrollama-container .step .content li {
+  color: #333;
+  margin-bottom: 8px;
+}
 </style>
+
