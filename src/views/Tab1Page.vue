@@ -29,7 +29,7 @@ import { VCol } from 'vuetify/components';
 const currentStep = ref(null);
 
 
-// This is where you can add the titles for your sections
+// This is where you can add the titles and content for your sections
 const steps = [
   { title: 'Step 1', content: 'Content for step 1.' },
   { title: 'Step 2', content: 'Content for step 2.' },
