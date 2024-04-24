@@ -20,7 +20,6 @@
   </div>
 </template>
 
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import VueScrollama from 'vue3-scrollama';
@@ -28,12 +27,12 @@ import { VCol } from 'vuetify/components';
 
 const currentStep = ref(null);
 
-
 // This is where you can add the titles and content for your sections
+// Troll face: https://tenor.com/view/troll-troll-face-gif-25116980
 const steps = [
-  { title: 'Step 1', content: 'Content for step 1.' },
-  { title: 'Step 2', content: 'Content for step 2.' },
-  { title: 'Step 3', content: 'Content for step 3.' },
+  { title: 'Step 1', content: 'UGH' },
+  { title: 'Step 2', content: 'Totally not breaking any of your work Rodolfo.' },
+  { title: 'Step 3', content: 'I promise.' },
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
@@ -78,4 +77,3 @@ function handleStepEnter({ element }) {
 }
 
 </style>
-
