@@ -15,35 +15,76 @@
       >
         <h2>{{ step.title }}</h2>
         <div v-html="step.content" class="content"></div>      
+        <div v-if="index === 2" id="sunburst"></div>
       </v-col>
     </VueScrollama>
   </div>
 </template>
 
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import { VCol } from 'vuetify/components';
+import * as d3 from 'd3';
 
 const currentStep = ref(null);
 
-
-// This is where you can add the titles for your sections
+// Steps data
 const steps = [
   { title: 'Step 1', content: 'Content for step 1.' },
   { title: 'Step 2', content: 'Content for step 2.' },
   { title: 'Step 3', content: 'Content for step 3.' },
 ];
+
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
+  createSunburst();  // Call this function when the component is mounted
 });
 
 function handleStepEnter({ element }) {
   currentStep.value = element.dataset.stepNo;
 }
 
+function createSunburst() {
+  // Define width, height, and radius for the sunburst chart
+  const width = 300;
+  const height = 300;
+  const radius = Math.min(width, height) / 2;
+
+  // Create a SVG for the sunburst chart
+  const svg = d3.select("#sunburst").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  // Sample data structure for sunburst chart
+  const data = {
+    name: "root",
+    children: [
+      { name: "section 1", size: 100 },
+      { name: "section 2", size: 300 },
+      { name: "section 3", size: 200 }
+    ]
+  };
+
+  const root = d3.hierarchy(data).sum(d => d.size);
+  const partition = d3.partition().size([2 * Math.PI, root.height + 1])(root);
+
+  const arc = d3.arc()
+    .startAngle(d => d.x0)
+    .endAngle(d => d.x1)
+    .innerRadius(d => d.y0 * radius)
+    .outerRadius(d => d.y1 * radius - 1);
+
+  svg.selectAll("path")
+    .data(partition.descendants().filter(d => d.depth))
+    .enter().append("path")
+    .attr("fill", d => d.data.color)
+    .attr("d", arc);
+}
 </script>
+
 
 <style scoped>
 .scrollama-container {

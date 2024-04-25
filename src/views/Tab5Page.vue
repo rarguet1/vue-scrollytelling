@@ -39,23 +39,36 @@ const steps = [
 
               Some popular examples include:
               <ul>
-                <li>Banana for scale</li>
-                <li>American Eagles</li>
-                <li>Hot Dogs</li>
+                <li> <strong>Bananas</strong> <img src="/images/banana.jpeg" alt="Banana"></li>
+                <li><strong>Washing machines</strong> <img src="/images/washing_machine.png" alt="Washing Machine"></li>
+                <li><strong>Bald eagles</strong> <img src="/images/eagle.jpeg" alt="Bald Eagle"></li>
               </ul>`
   },
   { 
     title: 'Choosing Cats as a Unit of Measurement:', 
-    content: `However, there is one thing the internet loves… cats! 
-    We will be using some math to find out how many cats can fit in a car. 
-    Originally we intended to find out how many cats fit in the trunk of a car… 
-    However, not all cars have a trunk, some are hatchbacks. 
-    This led us to reconsider our methods. 
-    Inspired by this article, 'Honda Civic Trunk Cats', cats will be our chosen unit of measurement.` 
+    content: ` Inspired by this article, <a href="https://owlcation.com/stem/Cat-Mathematics-How-Many-Cats-Does-it-Take">'Cat Mathematics: How Many Cats Fit Into the Trunk of a Honda Civic?'</a>, 
+    we've chosen cats as our unit of measurement, partly because the internet adores them, cats are liquid, and it gives me an excuse to look at cat pictures.
+    We'll be applying some mathematical calculations to determine how many cats can comfortably fit inside a car. 
+    <ul>
+      <li> <img src="/images/liquid_cat_hd.png" alt="Liquid cat"></li>
+    </ul>
+    ` 
   },
   { 
     title: 'Mathematical Approach and Methodology:', 
-    content: `I will be borrowing their math and extrapolating a bit, so bear with me…` 
+    content: `Initially, our goal was to determine how many cats could fit in a car's trunk. 
+    However, since not all cars have trunks—some are hatchbacks—we had to rethink our approach. 
+    Lets start off with defining some constants.
+    The article estimates the volume of a cat to be approximately 0.083 cubic feet, and their packing ratio to be about 50%.
+    Next, we calculate the volume of the chosen car and subtract the space occupied by two average-sized humans as passengers, which we'll refer to as capacity.
+    To find out how many cats can fit, we divide the capacity by the volume of cat and then multiply by the packing ratio.
+    
+    <ul>
+      <li> <img src="/images/cat_math.gif" alt="Liquid cat"></li>
+    </ul>
+    <strong> Disclaimer: No cats were harmed in the making of this post </strong>
+    ` 
+ 
   },
   { 
     title: 'Analysis Set 1: Popular Cars:', 
@@ -94,8 +107,7 @@ function handleStepEnter({ element }) {
 .step {
   padding-top: 50px;
   padding-right: 50px;
-  min-height: 400px;
-  margin-bottom: 100vh;
+  margin-bottom: 5vh;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateY(20px); 
   opacity: 0.5; /* Start with a lower opacity */
@@ -116,3 +128,21 @@ function handleStepEnter({ element }) {
 
 </style>
 
+
+<style>
+
+.scrollama-container .step .content ul {
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  list-style-type: none;
+}
+
+.scrollama-container .step .content img {
+  max-width: 100%; /* Ensures image is not wider than its container */
+  max-height: 400px; /* Limits the image height to 200px */
+  display: block; /* Sets the image as a block element */
+  margin: 10px auto; /* Centers the image horizontally and adds space around it */
+  object-fit: contain; /* Ensures the aspect ratio is maintained while fitting to the box */
+}
+</style>
