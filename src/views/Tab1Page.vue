@@ -30,9 +30,23 @@ const currentStep = ref(null);
 // This is where you can add the titles and content for your sections
 // Troll face: https://tenor.com/view/troll-troll-face-gif-25116980
 const steps = [
-  { title: 'Step 1', content: 'UGH' },
-  { title: 'Step 2', content: 'Totally not breaking any of your work Rodolfo.' },
-  { title: 'Step 3', content: 'I promise.' },
+  { 
+    title: 'Top Ten Car Brands', 
+    content: `This donut chart shows the top ten car brands and their numbers of units sold. 
+    <ul>
+      <li> <img src="/images/Donut_Chart_Beta.png" alt="Beta Donut Chart"></li>
+    </ul>
+    ` 
+  },
+  { 
+    title: 'Favorite Cars of The United States', 
+    content: `This donut chart shows the top ten car brands and their numbers of units sold. 
+    <ul>
+      <li> <img src="/images/Color_Cholorpleth_Map_Beta.png" alt="Beta Color Cholorpleth Map"></li>
+    </ul>
+    ` 
+  },
+  { title: 'DO NOT LOOK HERE YET', content: 'Something Something Something.' },
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
