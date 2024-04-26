@@ -65,7 +65,7 @@ const steps = [
     However, since not all cars have trunks—some are hatchbacks—we had to rethink our approach, we opted to use the passenger volume. 
     Lets start off with defining some constants.
     The article estimates the volume of a cat to be approximately 0.083 cubic feet, and their packing ratio to be about 50%.
-    Next, we lookup the passenger volume of chosen car and subtract the space occupied by two average-passengerVolumed humans as passengers, which we'll refer to as capacity.
+    Next, we lookup the passenger volume of chosen car and subtract the space occupied by two average-sized humans as passengers, which we'll refer to as capacity.
     To find out how many cats can fit, we divide the capacity by the volume of cat and then multiply by the packing ratio.
     
     <ul>
@@ -86,7 +86,7 @@ const steps = [
   { title: 'Analysis Set 2: Largest Cars:', 
   content: `The second set will focus on the largest cars in our dataset. 
   How many cats can fit in them? 
-  We’ve handpicked those based on universal car knowledge because web scraping the car passengerVolumes would not be too fun…` },
+  We’ve handpicked those based on universal car knowledge because web scraping the car volumes would not be too fun…` },
   { title: 'Analysis Set 2: Results', 
   content: `Results` },
   { title: 'Conclusion',
