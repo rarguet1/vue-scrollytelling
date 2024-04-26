@@ -31,8 +31,24 @@ const currentStep = ref(null);
 
 // This is where you can add the titles for your sections
 const steps = [
-  { title: 'Step 1', content: 'Content for step 1.' },
-  { title: 'Step 2', content: 'Content for step 2.' },
+  { 
+    title: 'Overall MMR Market Trend by Make',
+    content: `This streamgraph depicts the yearly market trends (MMR) by car make and year, featuring additional interactivity such as scrollable legend, year slider, and reset buttons. 
+    <ul>
+      <li> <img src="/images/Streamgraph.png"
+         alt="Beta Stream graph"></li>
+    </ul>
+    `  
+  },
+  { 
+    title: 'Total Number of Cars Sold per State',
+    content: `This choropleth map illustrating the total number of cars sold in each state in the US, featuring interactive annotations and a hover feature. Note that data is unavailable for certain states.
+    <ul>
+      <li> <img src="/images/choropleth_map.png"
+         alt="Beta Stream graph"></li>
+    </ul>
+    `
+  },
   { title: 'Step 3', content: 'Content for step 3.' },
 ];
 onMounted(() => {
