@@ -49,7 +49,6 @@ const steps = [
     </ul>
     `
   },
-  { title: 'Step 3', content: 'Content for step 3.' },
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
