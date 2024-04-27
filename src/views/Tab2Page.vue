@@ -31,8 +31,23 @@ const currentStep = ref(null);
 
 // This is where you can add the titles for your sections
 const steps = [
-  { title: 'Step 1', content: 'Content for step 1.' },
-  { title: 'Step 2', content: 'Content for step 2.' },
+  { title: 'Most common Makes, Models and Body types', 
+  content: ` This is Sunburst chart with Makes as upper layer. It's an interactive vis, once you click on Ford (for exacmple) the sunburst becomes for Ford .
+   The second image shows how it looks. Similarly the hierarchy continues for everything.
+            <ul>
+              <li> <img src="/images/Capture-1.PNG" alt="Sunburst chart"></li>
+              <li> <img src="/images/Capture-1.1.PNG" alt="Sunburst chart"></li>
+            </ul>
+            `
+  },
+  { title: 'Top 10 vehicle sales',
+   content: `This is Stacked bar chart which shows sales of Top 10 vechicle makes over the time period
+            <ul>
+              <li> <img src="/images/Capture3.PNG" alt="Stacked Barchart"></li>
+            </ul>
+   
+            ` 
+  },
   { title: 'Step 3', content: 'Content for step 3.' },
 ];
 onMounted(() => {
