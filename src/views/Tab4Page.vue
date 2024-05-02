@@ -1,80 +1,65 @@
 <template>
   <div>
-    <div ref="chart" style="width: 100%; height: 500px;"></div>
-    <input type="range" v-model="currentYear" :min="minYear" :max="maxYear" @input="updateChart">
-    <p>Year: {{ currentYear }}</p>
+    <VueScrollama :debug="false" :offset="0.2" @step-enter="handleStepEnter" class="scrollama-container">
+      <v-col v-for="(step, index) in steps" :key="index" class="step"
+        :class="{ 'step-active': currentStep === (index + 1).toString() }" :data-step-no="index + 1">
+        <h2>{{ step.title }}</h2>
+        <div v-html="step.content" class="content"></div>
+        <BubbleChart v-if="index === 1" :min-year="minYear" :max-year="maxYear" :all-data="allData"></BubbleChart>
+      </v-col>
+    </VueScrollama>
   </div>
 </template>
 
-<script>
-import Plotly from 'plotly.js-dist-min';
+<script setup>
+import { ref } from 'vue';
+import VueScrollama from 'vue3-scrollama';
+import { VCol } from 'vuetify/components';
+import BubbleChart from './BubbleChart.vue';
 
-export default {
-  name: 'BubbleChart',
-  data() {
-    return {
-      currentYear: 2020,
-      minYear: 2015,
-      maxYear: 2024,
-      allData: {
-        2015: { x: ['Company A', 'Company B'], y: [10, 20], size: [120, 180] },
-        2020: { x: ['Company A', 'Company B'], y: [20, 30], size: [240, 300] },
-        2024: { x: ['Company A', 'Company B'], y: [30, 40], size: [360, 420] }
-      }
-    };
-  },
-  mounted() {
-    this.drawChart();
-  },
-  methods: {
-    drawChart() {
-      const data = this.allData[this.currentYear];
-      const trace = {
-        x: data.x,
-        y: data.y,
-        mode: 'markers',
-        marker: {
-          size: data.size,
-          sizemode: 'area',
-          sizeref: 2 * Math.max(...data.size) / (40**2),
-          color: data.size,
-          colorscale: 'Viridis',
-          showscale: true
-        }
-      };
+const steps = ref([
+  { title: "Introduction", content: "Welcome!" }, 
+  { title: "Bubble Chart", content: "This is a bubble chart." }]);
+  
+const currentStep = ref(null);
 
-      const layout = {
-        title: 'Market Share by Company',
-        xaxis: {
-          title: 'Company',
-          showgrid: false,
-          zeroline: false
-        },
-        yaxis: {
-          title: 'Market Share (%)',
-          showline: false
-        },
-        showlegend: false,
-        height: 600,
-        width: 600
-      };
-
-      Plotly.newPlot(this.$refs.chart, [trace], layout);
-    },
-    updateChart() {
-      Plotly.animate(this.$refs.chart, {
-        data: [{x: this.allData[this.currentYear].x, y: this.allData[this.currentYear].y, 'marker.size': this.allData[this.currentYear].size}],
-        layout: {}
-      }, {
-        transition: {
-          duration: 500,
-          easing: 'cubic-in-out'
-        },
-        frame: {
-          duration: 500
-        }
-      });
-    }
-  }
-};
+function handleStepEnter({ element }) {
+  currentStep.value = element.dataset.stepNo;
+}
 </script>
+
+<style scoped>
+.scrollama-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content{
+  padding-right: 5%;
+  padding-left: 1%;
+  padding-bottom: 10%; /* fixes missing transitions */
+}
+
+.step {
+  padding-top: 50px;
+  padding-right: 50px;
+  margin-bottom: 10vh;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(20px); 
+  opacity: 0.5; /* Start with a lower opacity */
+}
+
+.step-active {
+  transform: translateY(0); /* End at natural position */
+  opacity: 1; /* Fully visible when active */
+}
+
+.scrollama-container .step p {
+  text-indent: 0;
+  margin-left: 0;
+  padding-right: 1.3em; /* Adjust this as needed to align with the text above */
+  line-height: 1.6;
+
+}
+
+</style>
