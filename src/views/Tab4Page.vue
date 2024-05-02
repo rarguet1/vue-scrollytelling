@@ -6,6 +6,7 @@
         <h2>{{ step.title }}</h2>
         <div v-html="step.content" class="content"></div>
         <BubbleChart v-if="index === 1" :min-year="minYear" :max-year="maxYear" :all-data="allData"></BubbleChart>
+        <SunburstChart v-if="index === 2"></SunburstChart> 
       </v-col>
     </VueScrollama>
   </div>
@@ -16,10 +17,15 @@ import { ref } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import { VCol } from 'vuetify/components';
 import BubbleChart from './BubbleChart.vue';
+import SunburstChart from './SunburstChart.vue';  // Adjust the path as necessary
+
 
 const steps = ref([
   { title: "Introduction", content: "Welcome!" }, 
-  { title: "Bubble Chart", content: "This is a bubble chart." }]);
+  { title: "Bubble Chart", content: "This is a bubble chart." },
+  { title: "Sunburst Chart", content: "This is a sunburst chart." }
+  ]
+);
   
 const currentStep = ref(null);
 
