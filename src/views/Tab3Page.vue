@@ -14,7 +14,13 @@
         :data-step-no="index + 1"
       >
         <h2>{{ step.title }}</h2>
-        <div v-html="step.content" class="content"></div>      
+        <div v-html="step.content" class="content"></div> 
+        <div v-if="index === 0" class="choropleth-map">
+          <iframe src="/images/streamgraph.html"></iframe>
+        </div> 
+        <div v-if="index === 1" class="choropleth-map">
+          <iframe src="/images/ChoroplethMap.html"></iframe>
+        </div>     
       </v-col>
     </VueScrollama>
   </div>
@@ -33,21 +39,11 @@ const currentStep = ref(null);
 const steps = [
   { 
     title: 'Overall MMR Market Trend by Make',
-    content: `This streamgraph depicts the yearly market trends (MMR) by car make and year, featuring additional interactivity such as scrollable legend, year slider, and reset buttons. 
-    <ul>
-      <li> <img src="/images/Streamgraph.png"
-         alt="Beta Stream graph"></li>
-    </ul>
-    `  
+    content: `This streamgraph depicts the yearly market trends (MMR) by car make and year, featuring additional interactivity such as scrollable legend, year slider, and reset buttons.`  
   },
   { 
     title: 'Total Number of Cars Sold per State',
-    content: `This choropleth map illustrating the total number of cars sold in each state in the US, featuring interactive annotations and a hover feature. Note that data is unavailable for certain states.
-    <ul>
-      <li> <img src="/images/choropleth_map.png"
-         alt="Beta Stream graph"></li>
-    </ul>
-    `
+    content: `This choropleth map illustrating the total number of cars sold in each state in the US, featuring interactive annotations and a hover feature. Note that data is unavailable for certain states.`
   },
 ];
 onMounted(() => {
@@ -62,19 +58,21 @@ function handleStepEnter({ element }) {
 
 <style scoped>
 .scrollama-container {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .content{
-  padding-right: 5%;
-  padding-left: 1%;
+  padding-bottom: 24px;
 }
 
 .step {
-  padding-top: 50px;
-  min-height: 400px;
-  margin-bottom: 100vh;
+  margin: 20px 0;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateY(20px); 
   opacity: 0.5; /* Start with a lower opacity */
@@ -88,9 +86,22 @@ function handleStepEnter({ element }) {
 .scrollama-container .step p {
   text-indent: 0;
   margin-left: 0;
-  padding-right: 1.2em; /* Adjust this as needed to align with the text above */
   line-height: 1.2;
 }
 
+.choropleth-map {
+  margin: auto;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.choropleth-map iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
 </style>
 
