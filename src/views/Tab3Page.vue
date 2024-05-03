@@ -115,7 +115,7 @@ const steps = [
     [2] N. Psychonaut, “Streamgraph,” Wikipedia, https://en.wikipedia.org/wiki/Streamgraph#/media/File:LastGraph_example.svg (accessed May 2, 2024).
     <br><br>
     [3] J. Stevens, “Bivariate Choropleth Maps: A how-to guide,” Joshua Stevens - Visual Communicator, https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/ (accessed May 3, 2024).  
-    <br>
+    <br><br>
     [4] N. nolimits4web, “Nolimits4web/swiper: Most modern mobile touch slider with hardware accelerated transitions,” GitHub, https://github.com/nolimits4web/swiper (accessed May 3, 2024). `
   },
 ];
