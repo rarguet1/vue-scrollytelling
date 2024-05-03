@@ -16,9 +16,9 @@ export default {
     drawChart() {
 const data = [{
     type: "sunburst",
-    labels: ["United States", "Northeast", "Midwest", "South", "West",],
-    parents: ["", "United States", "United States", "United States", "United States",],
-    values: [472325, 58036, 96646, 214723, 102920,], // Ensure sums are consistent
+    labels: ["United States", "Northeast", "Midwest", "South", "West", "Alabama", "Arizona", "California", "Colorado", "Florida", "Georgia", "Hawaii", "Illinois", "Indiana", "Louisiana", "Massachusetts", "Maryland", "Michigan", "Minnesota", "Missouri", "Mississippi", "North Carolina", "Nebraska", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "South Carolina", "Tennessee", "Texas", "Utah", "Virginia", "Washington", "Wisconsin"],
+    parents: ["", "United States", "United States", "United States", "United States", "South", "West", "West", "West", "South", "South", "West", "Midwest", "Midwest", "South", "Northeast", "South", "Midwest", "Midwest", "Midwest", "South", "South", "Midwest", "Northeast", "West", "West", "Northeast", "Midwest", "South", "West", "Northeast", "South", "South", "South", "South", "West", "South", "West", "Midwest"],
+    values: [472325, 58036, 96646, 214723, 102920, 25, 7612, 66213, 6270, 75243, 30939, 1205, 21494, 3879, 1744, 6167, 9788, 14185, 8627, 15286, 1730, 18731, 3685, 23003, 163, 11682, 4749, 20294, 54, 1047, 24117, 2427, 3754, 19183, 41657, 1716, 9448, 7012, 9196], 
     branchvalues: 'total'
 }];
       const layout = {
