@@ -89,7 +89,14 @@ const steps = [
     title: 'Choropleth Map',
     content: `A <a href="https://www.tableau.com/data-insights/reference-library/visual-analytics/geospatial/area-maps">Choropleth map</a> is a type of <b>statistical thematic map</b> that utilizes color to represent data. The colors correspond to aggregates of data that summarize geographic characteristics, such as population density, pollution levels, and per capita income, and other spatial data.
     <br><br>
-    <img src="/images/js_finalBivariateMap.png" alt="choropleth example" width="600px" />`
+    <ul>
+      <li>
+        <img src="/images/js_finalBivariateMap.png" alt="choropleth example" width="600px" />
+      </li>
+      <li>
+        <p>Example of a 9-class bivariate map</p>
+      </li>
+    </ul>`
   },
   { 
     title: 'Implementation',
@@ -104,6 +111,10 @@ const steps = [
     content: `In conclusion, my research has emphasized the value of <b>Marks & Channels</b> in data visualization. These two aspects illustrate both the expressiveness and effectiveness principles crucial for communicating visualizations to users, especially given the plethora of options available. The theme plays a pivotal role in ensuring that data is accurately represented and that the underlying ideas are effectively conveyed.
     <br><br>
     Moreover, the audience was central to considering how Marks & Channels could effectively tell a story. Our <b>targeted users</b> have specific points of interest for research, decision-making, and marketing purposes. I believe these visualization techniques effectively conveyed the intended tasks and met the requirements necessary to fulfill these questions.`
+  },
+  { 
+    title: 'Thanks for Reading!',
+    content: `<img src="images/car-drifting-spinning-with-burn-out-d8yz31gq38659cga.gif" alt="thank you" style="border-radius: 5%;" />`
   },
   { 
     title: 'References',
@@ -214,7 +225,7 @@ function handleStepEnter({ element }) {
   opacity: 1; /* Fully visible when active */
 }
 
-.step:nth-child(11) .content{
+.step:nth-child(12) .content{
   text-align: left;
   margin-bottom: 80px;
 }
