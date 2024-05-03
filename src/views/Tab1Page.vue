@@ -33,9 +33,24 @@ const currentStep = ref(null);
 // This is where you can add the titles and content for your sections
 // Troll face: https://tenor.com/view/troll-troll-face-gif-25116980
 const steps = [
+  { title: 'Color', content: `<img src="/images/form-Newton-colour-circle.jpg" alt="Color Wheel Image" />` },
+  { title: 'Color and Visualization', content: `The most important aspects of <b>Color</b> for data visualization is <b>Hue, Lumiance, and Saturation</b>, each of which can be used to encode data in different ways. 
+    <br></br>
+    <b>Colormaps</b> are another aspect of Color and is used to either distinguish <b>Categorical</b> attributes or encode <b>Ordered</b> attributes
+    <br></br>
+    Within the context of our course <b>Color</b> as a term can be used as an <b>Identity</b> channel. 
+    <ul>
+      <img src="/images/Color_Encoding.jpg" alt="Color Wheel Image" />
+    </ul>
+  `},
+  { title: 'Importance of Color', content: `Color is a key tool of visualizations. It can allow us to distinguish between between different attributes. It also can allow us to encode magnitude in a way that may be visually appealing to users.`},
+  { title: 'Application', content: `For the theme of color, I chose to tackle our project task <b>"Display The Top Brands to the User"</b>
+    <br></br>
+    Using Plotly, I took a transformed version of our original car dataset, one that gathered the numbers of makes sold each year, and created a donut chart. I further transformed the data to gather the total sales for each make, then compared each of the makes against each other. Taking the top ten of each, they were compiled into a final donut chart.
+  `},
   { 
-    title: 'Top Ten Car Brands', 
-    content: `This donut chart shows the top ten car brands and their numbers of units sold. 
+    title: 'The Result', 
+    content: ` 
     <ul>
       <iframe src="/images/BrandCountDonut.html" width="800" height="800"></iframe>
     </ul>
@@ -68,14 +83,14 @@ function handleStepEnter({ element }) {
 }
 
 .content{
-  padding-right: 5%;
-  padding-left: 1%;
+  padding: 0 64px;
 }
 
 .step {
-  padding-top: 50px;
-  min-height: 400px;
-  margin-bottom: 100vh;
+  margin: 0;
+  padding: 24px;
+  width: 100%;
+  height: max-content;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateY(20px); 
   opacity: 0.5; /* Start with a lower opacity */
