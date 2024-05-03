@@ -22,7 +22,7 @@ import SunburstChart from './SunburstChart.vue';  // Adjust the path as necessar
 
 const steps = ref([
   { title: "Introduction", content: "Welcome!" }, 
-  { title: "Bubble Chart", content: "This is a bubble chart." },
+  { title: "Exploring Automotive Market Trends (1980-2015)", content: `Dive into the shifts and turns in the automotive industry through an interactive journey from 1980 to 2015.` },
   { title: "Sunburst Chart", content: "This is a sunburst chart." }
   ]
 );

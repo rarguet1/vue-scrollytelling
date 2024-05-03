@@ -93,6 +93,10 @@ html, body {
   min-height: 100vh;
   background: linear-gradient(90deg, #880E4F, #F9CBE4, #880E4F);
 }
+
+html{
+  scroll-behavior: smooth;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -102,6 +106,8 @@ html, body {
   margin-top: 20px;
 }
 
+
+
 .v-tab {
   color: #FFF !important; /* This ensures the text is white and overrides other styles */
 }
@@ -109,6 +115,10 @@ html, body {
 .scrollama-container .step .content li {
   color: #333;
   margin-bottom: 10px;
+}
+
+main {
+    flex: 1; /* This makes the main content grow and occupy any extra space */
 }
 </style>
 
