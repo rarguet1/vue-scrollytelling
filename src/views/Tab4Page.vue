@@ -47,7 +47,7 @@ function handleStepEnter({ element }) {
 }
 
 .step {
-  padding-top: 50px;
+  padding-top: 100px;
   padding-right: 50px;
   margin-bottom: 10vh;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
