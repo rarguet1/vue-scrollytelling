@@ -87,10 +87,11 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0.5%;
+html, body {
+  margin: 1%;
   padding: 0.5%;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
+  min-height: 100vh;
+  background: linear-gradient(90deg, #880E4F, #F9CBE4, #880E4F);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
