@@ -1,6 +1,5 @@
 <template>
   <v-app id="app">
-    <!-- <semipolar-spinner :animation-duration="2000" :size="65" color="#880E4F" /> -->
     
     <!-- Tab Navigation wrapped in a container to control width -->
     <v-container class="px-4" style="max-width: 85%; margin: auto;">
@@ -40,14 +39,12 @@
 <script>
 import { VFooter } from 'vuetify/lib/components/index.mjs';
 import TabNavigation from './components/TabNavigation.vue'
-// import { SemipolarSpinner  } from 'epic-spinners'
 
 export default {
   name: 'App',
   components: {
     TabNavigation,
     VFooter,
-    // SemipolarSpinner,
   },
   data() {
     return {
@@ -90,6 +87,11 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0.5%;
+  padding: 0.5%;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
