@@ -14,7 +14,10 @@
         :data-step-no="index + 1"
       >
         <h2>{{ step.title }}</h2>
-        <div v-html="step.content" class="content"></div>      
+        <div v-html="step.content" class="content"></div>
+        <!-- <div v-if="index === 0" class="content">
+          <iframe src="/images/BrandCountDonut.html" width="800" height="800"></iframe>
+        </div> -->      
       </v-col>
     </VueScrollama>
   </div>
@@ -34,7 +37,7 @@ const steps = [
     title: 'Top Ten Car Brands', 
     content: `This donut chart shows the top ten car brands and their numbers of units sold. 
     <ul>
-      <li> <img src="/images/Donut_Chart_Beta.png" alt="Beta Donut Chart"></li>
+      <iframe src="/images/BrandCountDonut.html" width="800" height="800"></iframe>
     </ul>
     ` 
   },
