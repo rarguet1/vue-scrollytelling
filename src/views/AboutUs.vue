@@ -1,13 +1,13 @@
 <!-- AboutUs.vue -->
 <template>
-  <v-container>
-    <!-- About Us Section -->
+  <v-container >
     <v-row class="data-table-row">
       <v-col cols="12">
         <h1>About Us</h1>
         <p class="body-1">
           This website was developed as our main project for CMSC 436 during the Spring 2024 semester. 
           It was designed to share relevant insights about our car dataset.
+          ** Add In this summary, orient the user to what they will experience using your system, and mention the user tasks that they can solve by using your system
         </p>
       </v-col>
     </v-row>
@@ -32,12 +32,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .body-1 {
   text-indent: 0;
   margin-left: 0;
-  padding-right: 1.2em;
+  padding-right: 3em;
   line-height: 1.2;
+}
+
+.container {
+  position: relative;
+  height:100vh;
 }
 
 </style>

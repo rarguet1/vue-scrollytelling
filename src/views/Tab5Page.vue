@@ -1,11 +1,6 @@
 <template>
   <div>
-    <VueScrollama
-      :debug="false" 
-      :offset="0.3"
-      @step-enter="handleStepEnter"
-      class="scrollama-container"
-    >
+    <VueScrollama :debug="false" :offset="0.3" @step-enter="handleStepEnter" class="scrollama-container">
       <v-col
         v-for="(step, index) in steps"
         :key="index"
@@ -603,10 +598,6 @@ function drawLargeGroupedBarChart(data) {
 </script>
 
 <style scoped>
-.scrollama-container {
-  display: flex;
-  flex-direction: column;
-}
 
 .content{
   padding-right: 5%;
@@ -633,7 +624,6 @@ function drawLargeGroupedBarChart(data) {
   margin-left: 0;
   padding-right: 1.3em; /* Adjust this as needed to align with the text above */
   line-height: 1.6;
-
 }
 
 </style>
@@ -655,6 +645,4 @@ function drawLargeGroupedBarChart(data) {
   margin: 10px auto; /* Centers the image horizontally and adds space around it */
   object-fit: contain; /* Ensures the aspect ratio is maintained while fitting to the box */
 }
-
-
 </style>

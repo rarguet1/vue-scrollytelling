@@ -33,12 +33,6 @@ export default {
 
 
 <style scoped>
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:100vh;
-}
 
 .container {
   position: relative;

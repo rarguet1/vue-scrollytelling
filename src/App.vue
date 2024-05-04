@@ -1,8 +1,6 @@
 <template>
   <v-app id="app">
-    
-    <!-- Tab Navigation wrapped in a container to control width -->
-    <v-container class="px-4" style="max-width: 85%; margin: auto;">
+        <v-container class="px-4" style="max-width: 85%; margin: auto;">
       <TabNavigation />
     </v-container>
     
@@ -32,6 +30,7 @@
     </v-container>
   </v-footer>
   </v-app>
+  
 </template>
 
 
@@ -76,7 +75,7 @@ export default {
     },
   },
   mounted() {
-    this.debouncedHandleResize = this.debounce(this.handleResize, 500);
+    this.debouncedHandleResize = this.debounce(this.handleResize, 1000);
     window.addEventListener('resize', this.debouncedHandleResize);
   },
   beforeUnmount() {
@@ -87,6 +86,14 @@ export default {
 </script>
 
 <style>
+
+.scrollama-container {
+  display: flex;
+  flex-direction: column;
+  height: 120vh;
+  overflow-y: auto;
+}
+
 html, body {
   margin: 1%;
   padding: 0.5%;
@@ -97,6 +104,7 @@ html, body {
 html{
   scroll-behavior: smooth;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -105,8 +113,6 @@ html{
   align-items: center;
   margin-top: 20px;
 }
-
-
 
 .v-tab {
   color: #FFF !important; /* This ensures the text is white and overrides other styles */
@@ -117,8 +123,5 @@ html{
   margin-bottom: 10px;
 }
 
-main {
-    flex: 1; /* This makes the main content grow and occupy any extra space */
-}
 </style>
 
