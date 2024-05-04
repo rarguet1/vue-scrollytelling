@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-        <v-container class="px-4" style="min-width: 100%; margin: auto;">
+        <v-container class="px-4" style="min-width: 100%;">
       <TabNavigation />
     </v-container>
     

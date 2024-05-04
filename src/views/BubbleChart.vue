@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div ref="chart" style="width: 100%; height: 90vh;"></div>
-    <input type="range" v-model="currentYear" :min="minYear" :max="maxYear" @input="updateChart">
+    <div ref="chart" style="width: 90%; height: 100vh;"></div>
+    <input type="range" class="slider" v-model="currentYear" :min="minYear" :max="maxYear" @input="updateChart">
     <p>Year: {{ currentYear }}</p>
   </div>
 </template>
@@ -44,8 +44,7 @@ export default {
         2014: { x: ["Acura", "Audi", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "FIAT", "Ford", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Land Rover", "Lexus", "Lincoln", "MINI", "Maserati", "Mazda", "Mercedes", "Mitsubishi", "Nissan", "Porsche", "Ram", "Scion", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo", "smart"], y: [0.3, 1.2, 4.4, 0.7, 0.6, 11.0, 4.7, 6.8, 0.2, 24.0, 2.3, 1.6, 2.6, 2.2, 0.3, 4.0, 5.6, 0.6, 1.4, 1.8, 0.4, 0.1, 1.0, 2.5, 0.6, 5.0, 0.4, 3.1, 0.2, 2.2, 0.0, 6.5, 1.2, 0.4, 0.0], size: [4551050, 17130300, 61884250, 9579400, 9003050, 154153275, 65695675, 95463900, 3272575, 336575400, 32142650, 22841100, 37035050, 31531000, 3607000, 55830950, 78602275, 8353800, 19726500, 24801200, 6190150, 1160700, 14035475, 34406600, 8619250, 70167825, 5991300, 42863700, 2249550, 30318900, 366000, 91577475, 17470625, 5097050, 165750] },
         2015: { x: ["Acura", "Audi", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "FIAT", "Ford", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Land Rover", "Lexus", "Lincoln", "MINI", "Mazda", "Mercedes", "Mitsubishi", "Nissan", "Porsche", "Ram", "Scion", "Subaru", "Toyota", "Volkswagen", "Volvo", "smart"], y: [0.2, 1.4, 11.7, 1.3, 1.6, 18.9, 3.3, 2.0, 0.0, 11.8, 4.0, 0.7, 4.0, 0.2, 0.5, 3.7, 11.7, 0.2, 1.6, 0.4, 0.5, 2.9, 2.7, 0.4, 4.2, 0.1, 0.7, 0.1, 2.6, 2.0, 0.5, 3.9, 0.0], size: [488000, 2923800, 24931600, 2780900, 3387000, 40425150, 7134600, 4175050, 51650, 25286300, 8509200, 1545800, 8605300, 439500, 1173000, 7960650, 25007225, 330100, 3403500, 862100, 1106900, 6256450, 5753900, 832200, 8900975, 255000, 1466000, 167900, 5622300, 4326250, 964350, 8420000, 9550] },
       },
-      legendSizes: [1000, 10000, 50000],  // Bubble sizes for legend
-      legendLabels: ['Small (1k)', 'Medium (10k)', 'Large (50k)']
+      intervalId: null,
     };
   },
   mounted() {
@@ -58,8 +57,6 @@ export default {
     updateChartLayout(animate = true) {
       const data = this.allData[this.currentYear];
       const colors = Array(data.x.length).fill().map((_, i) => `hsl(${(i / data.x.length * 360)}, 100%, 70%)`); 
-      
-      const hoverText = data.x.map((label, i) => `${label}<br>Market Share: ${data.y[i]}%<br>Size: ${data.size[i]}`);// Unique color for each brand
 
       const trace = {
         x: data.x,
@@ -67,12 +64,12 @@ export default {
         mode: 'markers+text',
         text: data.x,
         hoverinfo: 'text',
-         hovertext: hoverText,
+        hovertext: data.x.map((label, i) => `${label}<br>Market Share: ${data.y[i]}%<br>Yearly Sales:$${data.size[i]}`),
         marker: {
-          size: data.size.map(s => Math.sqrt(s) * 0.25),
+          size: data.size.map(s => Math.sqrt(s) * 0.2),
           color: colors,
           sizemode: 'area',
-          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.6)) / (80 ** 2)
+          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.15)) / (50 ** 2)
         },
         textposition: 'top center',
         name: 'Companies'
@@ -81,11 +78,11 @@ export default {
       const layout = {
         title: 'Market Share by Company',
         xaxis: {
-          range: [-1, data.x.length],
           title: 'Company',
           showgrid: false,
           zeroline: false,
-          showticklabels: false
+          showticklabels: false,
+          range: [-2, data.x.length + 1] 
         },
         yaxis: {
           title: 'Market Share (%)',
@@ -102,13 +99,16 @@ export default {
       };
 
       if (animate) {
-        Plotly.animate(this.$refs.chart,{
+        Plotly.animate(this.$refs.chart, {
+          data: [trace],
+          layout: layout
+        }, {
           transition: {
-            duration: 500,
-            easing: "cubic-in-out"
+            duration: 1000,
+            easing: 'exp-in-out'
           },
           frame: {
-            duration: 500
+            duration: 400
           }
         });
       } else {
@@ -121,3 +121,22 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.slider {
+  width: 30%; /* Maintain the width, adjust if needed */
+  margin: 20px 0px 20px 30px; /* Top and bottom margins with right margin as auto and specific left margin */
+  display: block;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  padding-left: 2%;
+}
+</style>
