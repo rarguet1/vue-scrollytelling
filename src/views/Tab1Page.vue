@@ -48,23 +48,61 @@ const steps = [
     <br></br>
     Using Plotly, I took a transformed version of our original car dataset, one that gathered the numbers of makes sold each year, and created a donut chart. I further transformed the data to gather the total sales for each make, then compared each of the makes against each other. Taking the top ten of each, they were compiled into a final donut chart.
   `},
+  { title: 'Iteration: Alpha Version - Start', content: `Of course, getting to the final design wasn't necessarily a straightforward process. My artifact ever produced was made under the assumption that I'd be able to show off ever single car make.
+    <br></br>
+    <ul>
+      <img src="/images/BAD_PIE_0.png" alt="OG_RELEASE" />
+    </ul>
+  `},
+  { title: 'Iteration: Alpha Version - Further Elaborations', content: `That orginal version obviously wouldn't work. The only good aspect of it was it's interactivity. Moving forward, I tried creating some different visualizations.
+    <br></br>
+    <ul>
+      <img src="/images/BAD_PIE_1.png" alt="OG_RELEASE" />
+    </ul>
+    <br></br>
+    <ul>
+      <iframe src="/images/UGLYBAR.html" width="800" height="800"></iframe>
+    </ul>
+  `},
+  { title: 'Iteration: The Donut', content: `Shockingly, at least to me, the concept that was the best recieved was a simple donut chart.
+    <br></br>
+    <ul>
+      <img src="/images/OG_DONUT.png" alt="OG_RELEASE" />
+    </ul>
+  `},
+  { title: 'Iteration: Donut Betas', content: `Once I locked in the Donut Chart as the one I would be using for the final release, there was still more work to do. Prior to the beta, I had not been filtering data. For the beta builds, I tried filtering data by creating a separate attribute called <b>Others Models</b>. This didn't get the results that I wanted though.
+    <br></br>
+    <ul>
+      <img src="/images/DONUT_BAD_0.png" alt="OG_RELEASE" />
+    </ul>
+    <br></br>
+    <ul>
+      <img src="/images/DONUT_BAD_1.png" alt="OG_RELEASE" />
+    </ul>
+    <br></br>
+    <ul>
+      <img src="/images/DONUT_BAD_2.png" alt="OG_RELEASE" />
+    </ul>
+  `},   
   { 
-    title: 'The Result', 
-    content: ` 
+    title: 'The Final Result', 
+    content: `Eventually, I gave up on the idea of creating a working version of <b>Other Models</b> and instead opted to make the vis a top ten, leading to this simple but successful final result.
+    <br></br> 
     <ul>
       <iframe src="/images/BrandCountDonut.html" width="800" height="800"></iframe>
     </ul>
-    ` 
-  },
-  { 
-    title: 'Favorite Cars of The United States', 
-    content: `This donut chart shows the top ten car brands and their numbers of units sold. 
-    <ul>
-      <li> <img src="/images/Color_Cholorpleth_Map_Beta.png" alt="Beta Color Cholorpleth Map"></li>
-    </ul>
-    ` 
-  },
-  { title: 'DO NOT LOOK HERE YET', content: 'Something Something Something.' },
+    <br></br>
+    <b>Quantitative Attribute</b>: Total Cars (Area 2D)
+    <br></br>
+    <b>Categorical Attribute</b>: Car Make (Color Hue)
+    <br></br>
+    <b>Marks</b>: Areas
+  `},
+  { title: 'References', 
+    content: `[1] “Pie Charts,” plotly.com. https://plotly.com/python/pie-charts/.
+    <br></br>
+    [2] “Help Pie chart Plotly,” Plotly Community Forum, Oct. 02, 2020. https://community.plotly.com/t/help-pie-chart-plotly/45631.
+    `},
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
