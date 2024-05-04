@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-        <v-container class="px-4" style="max-width: 85%; margin: auto;">
+        <v-container class="px-4" style="min-width: 100%; margin: auto;">
       <TabNavigation />
     </v-container>
     
@@ -13,7 +13,7 @@
     <v-container 
       class="pa-3" 
       :style="{
-        maxWidth: '85%', 
+        maxWidth: '100%', 
         margin: 'auto', 
         backgroundColor: '#880E4F',
       }" 
@@ -87,6 +87,16 @@ export default {
 
 <style>
 
+.px-4{
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
+.v-footer {
+  bottom: 0;
+  width: 99.9%;
+}
+
 .scrollama-container {
   display: flex;
   flex-direction: column;
@@ -112,6 +122,8 @@ html{
   text-align: center;
   align-items: center;
   margin-top: 20px;
+  padding-left: 3px;
+  padding-right: 30px;
 }
 
 .v-tab {
