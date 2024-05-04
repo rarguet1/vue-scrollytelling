@@ -199,7 +199,8 @@ function handleStepEnter({ element }) {
   align-items: center;
   width: 100%;
   height: 250vh;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .content{
