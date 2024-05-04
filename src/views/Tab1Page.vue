@@ -102,7 +102,9 @@ const steps = [
     content: `[1] “Pie Charts,” plotly.com. https://plotly.com/python/pie-charts/.
     <br></br>
     [2] “Help Pie chart Plotly,” Plotly Community Forum, Oct. 02, 2020. https://community.plotly.com/t/help-pie-chart-plotly/45631.
-    `},
+    <br></br>
+    [3] T. Munzner, “Chapter 10 Map Color and Other Channels,” in Visualization Analysis and Design, Boca Raton, FL: CRC Press, 2014, pp. 219–241
+  `},
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
@@ -137,6 +139,11 @@ function handleStepEnter({ element }) {
 .step-active {
   transform: translateY(0); /* End at natural position */
   opacity: 1; /* Fully visible when active */
+}
+
+.step:nth-child(10) .content{
+  text-align: left; /* Properly formats the "References" section */
+  margin-bottom: 80px;
 }
 
 .scrollama-container .step p {
