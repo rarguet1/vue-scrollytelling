@@ -90,7 +90,7 @@ export default {
 .scrollama-container {
   display: flex;
   flex-direction: column;
-  height: 120vh;
+  height: 200vh;
   overflow-y: auto;
 }
 
