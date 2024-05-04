@@ -21,8 +21,11 @@ import SunburstChart from './SunburstChart.vue';  // Adjust the path as necessar
 
 
 const steps = ref([
-  { title: "Introduction", content: "Welcome!" }, 
-  { title: "Exploring Automotive Market Trends (1980-2015)", content: `Dive into the shifts and turns in the automotive industry through an interactive journey from 1980 to 2015.` },
+  { title: "Introduction", content: `Let's pretend you're a data analyst and your boss has tasked you with a comprehensive examination of vehicle sales data. 
+  Being the overachiever that you are, you decide to seize this opportunity not only to deliver insightful analysis but also to impress your boss and climb up in the corporate world rankings.
+  The "Vehicle Sales and Market Trends Dataset" serves as the basis for our analysis.` 
+}, 
+  { title: "Exploring Automotive Market Trends (1980-2015)", content: `Each data point in the bubble plot represents a vehicle make, with bubble size correlating to market share.` },
   { title: "Sunburst Chart", content: "This is a sunburst chart." }
   ]
 );
