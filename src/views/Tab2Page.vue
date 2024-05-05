@@ -36,12 +36,7 @@ content: `A misleading visualization in data visualization refers to a graphical
 <ul>
       <img src="/images/mis_theme_page.png" alt="theme" />
     </ul>`},
-{ title: 'Exaggerated proportion of Toyota Sales',
-  content: `This visualization is kind of misleading, because it is exaggerating Toyota sales by comparing it with all other car sales. The users will assume that Toyota has major proportion of sales compared to other car sales.
-    <ul>
-      <iframe src="/images/mis1_pie.html" width="800" height="800"></iframe>
-      </ul>`},
-      { title: 'Total sales vs Average sales ',
+{ 
   content: `This visualization is kind of misleading, because it is using dual Y-axis and both the scales are different. It is difficult to identify and compare the actual values. 
     <ul>
       <iframe src="/images/mis2_bl.html" width="1000" height="600"></iframe>
