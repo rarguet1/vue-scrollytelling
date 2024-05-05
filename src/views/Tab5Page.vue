@@ -85,7 +85,7 @@ const steps = [
   { title: 'Analysis Set 2: Results', 
   content: `Results` },
   { title: 'Conclusion',
-  content: `In this exploration, we’ve seen how even the most whimsical measurements can provide insights and make data visualization more engaging.`
+  content: `In this exploration, we’ve seen how even the most bizzare measurements can provide insights and make data visualization more engaging.`
   },
 ];
 onMounted(() => {
@@ -157,11 +157,10 @@ function drawLargeBarChart(data) {
   const svg = d3.select('#barChart3');
 
   svg.attr('width', 800)
-     .attr('height', 600)
-  // Clear previous renders
+     .attr('height', 700)
   svg.selectAll('*').remove();
 
-  const margin = {top: 20, right: 30, bottom: 50, left: 90},
+  const margin = {top: 20, right: 30, bottom: 50, left: 80},
       width = +svg.attr('width') - margin.left - margin.right,
       height = +svg.attr('height') - margin.top - margin.bottom,
       x = d3.scaleLinear().domain([0, d3.max(data, d => d.passengerVolume)]).range([0, width]),
@@ -175,11 +174,11 @@ function drawLargeBarChart(data) {
 
   g.append('text') // x-axis label
     .attr('x', width / 2)
-    .attr('y', height + margin.bottom)
+    .attr('y', height + margin.bottom - 10)
     .attr('text-anchor', 'middle')
     .text('Passenger Capacity (cubic feet)');
 
-  g.append('text') // y-axis label
+    g.append('text')
     .attr('transform', 'rotate(-90)')
     .attr('y', 0 - margin.left)
     .attr('x', 0 - (height / 2))
@@ -210,7 +209,7 @@ function drawLargeBarChart(data) {
     tooltip.transition()
       .duration(200)
       .style('opacity', 1);
-    tooltip.html(`Model: ${d.model}<br>Capacity: ${d.passengerVolume}`)
+    tooltip.html(`Model: ${d.model}<br>Capacity: ${d.passengerVolume} ft<sup>3</sup>`)
       .style('left', (event.pageX + 10) + 'px')
       .style('top', (event.pageY - 28) + 'px');
   })
@@ -223,7 +222,6 @@ function drawLargeBarChart(data) {
       .style('opacity', 0);
   });
 
-// Initialize the transition for width after setting up event listeners
 g.selectAll('.bar')
   .transition()
   .duration(800)
@@ -242,18 +240,17 @@ var tooltip = d3.select('body').append('div')
   .style('background', 'lightsteelblue')
   .style('border', '0px')
   .style('border-radius', '20px')
-  .style('pointer-events', 'none'); // Ensure tooltip doesn't interfere with mouse events
+  .style('pointer-events', 'none'); 
 }
 
 function drawPopBarChart(data) {
   const svg = d3.select('#barChart1');
 
   svg.attr('width', 800)
-     .attr('height', 700)
-  // Clear previous renders
+     .attr('height', 700);
   svg.selectAll('*').remove();
 
-  const margin = {top: 20, right: 30, bottom: 40, left: 90},
+  const margin = {top: 20, right: 30, bottom: 40, left: 120},
       width = +svg.attr('width') - margin.left - margin.right,
       height = +svg.attr('height') - margin.top - margin.bottom,
       x = d3.scaleLinear().domain([0, d3.max(data, d => d.count)]).range([0, width]),
@@ -261,17 +258,19 @@ function drawPopBarChart(data) {
       g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
   g.append('g')
-  .call(d3.axisLeft(y)); // y-axis
+    .call(d3.axisLeft(y)); // y-axis
   g.append('g').attr('transform', `translate(0,${height})`)
-  .call(d3.axisBottom(x)); // x-axis
+    .call(d3.axisBottom(x)); // x-axis
 
-  g.append('text') // x-axis label
+  // Append x-axis label
+  g.append('text')
     .attr('x', width / 2)
-    .attr('y', height + margin.bottom)
+    .attr('y', height + margin.bottom - 5)
     .attr('text-anchor', 'middle')
     .text('Sales Count');
 
-  g.append('text') // y-axis label
+  // Append y-axis label after y-axis is created
+  g.append('text')
     .attr('transform', 'rotate(-90)')
     .attr('y', 0 - margin.left)
     .attr('x', 0 - (height / 2))
@@ -279,67 +278,67 @@ function drawPopBarChart(data) {
     .style('text-anchor', 'middle')
     .text('Car Model');
 
+  g.selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('y', d => y(d.model))
+    .attr('height', y.bandwidth())
+    .attr('x', 0)
+    .attr('width', 0)
+    .attr('fill', '#880E4F')
+    .style('stroke', 'black')
+    .style('stroke-width', 1)
+    .on('mouseover', function(event, d) {
+      const [x, y] = d3.pointer(event);
+      tooltip.style('left', (x + 10) + 'px')
+             .style('top', (y + 10) + 'px');
+      d3.select(this).transition()
+        .duration(200)
+        .attr('fill', '#FFA500');
+      tooltip.transition()
+        .duration(200)
+        .style('opacity', 1);
+      tooltip.html(`Model: ${d.model}<br>Counts: ${d.count}`)
+        .style('left', (event.pageX + 10) + 'px')
+        .style('top', (event.pageY - 28) + 'px');
+    })
+    .on('mouseout', function() {
+      d3.select(this).transition()
+        .duration(500)
+        .attr('fill', '#880E4F');
+      tooltip.transition()
+        .duration(500)
+        .style('opacity', 0);
+    });
 
-    g.selectAll('.bar')
-  .data(data)
-  .enter()
-  .append('rect')
-  .attr('class', 'bar')
-  .attr('y', d => y(d.model))
-  .attr('height', y.bandwidth())
-  .attr('x', 0)
-  .attr('width', 0)
-  .attr('fill', '#880E4F')
-  .style('stroke', 'black')
-  .style('stroke-width', 1)
-  .on('mouseover', function(event, d) {
-    const [x, y] = d3.pointer(event);
-  tooltip.style('left', (x + 10) + 'px')
-         .style('top', (y + 10) + 'px');
-    d3.select(this).transition()
-      .duration(200)
-      .attr('fill', '#FFA500');
-    tooltip.transition()
-      .duration(200)
-      .style('opacity', 1);
-    tooltip.html(`Model: ${d.model}<br>Counts: ${d.count}`)
-      .style('left', (event.pageX + 10) + 'px')
-      .style('top', (event.pageY - 28) + 'px');
-  })
-  .on('mouseout', function() {
-    d3.select(this).transition()
-      .duration(500)
-      .attr('fill', '#880E4F');
-    tooltip.transition()
-      .duration(500)
-      .style('opacity', 0);
-  });
+  // Initialize the transition for width after setting up event listeners
+  g.selectAll('.bar')
+    .transition()
+    .duration(800)
+    .delay((d, i) => i * 100)
+    .attr('width', d => x(d.count));
 
-// Initialize the transition for width after setting up event listeners
-g.selectAll('.bar')
-  .transition()
-  .duration(800)
-  .delay((d, i) => i * 100)
-  .attr('width', d => x(d.count));
-
-var tooltip = d3.select('body').append('div')
-  .attr('class', 'tooltip')
-  .style('opacity', 0)
-  .style('position', 'absolute')
-  .style('text-align', 'center')
-  .style('width', '150px')
-  .style('height', '30px')
-  .style('padding', '2px')
-  .style('font', '12px sans-serif')
-  .style('background', 'lightsteelblue')
-  .style('border', '0px')
-  .style('border-radius', '20px')
-  .style('pointer-events', 'none'); // Ensure tooltip doesn't interfere with mouse events
+  var tooltip = d3.select('body').append('div')
+    .attr('class', 'tooltip')
+    .style('opacity', 0)
+    .style('position', 'absolute')
+    .style('text-align', 'center')
+    .style('width', '150px')
+    .style('height', '30px')
+    .style('padding', '2px')
+    .style('font', '12px sans-serif')
+    .style('background', 'lightsteelblue')
+    .style('border', '0px')
+    .style('border-radius', '20px')
+    .style('pointer-events', 'none'); // Ensure tooltip doesn't interfere with mouse events
 }
+
 
 function drawGroupedBarChart(data) {
   const svg = d3.select('#barChart2').attr('width', 800).attr('height', 500),
-    margin = { top: 50, right: 20, bottom: 70, left: 30 },
+    margin = { top: 50, right: 20, bottom: 70, left: 100 },
     width = +svg.attr('width') - margin.left - margin.right,
     height = +svg.attr('height') - margin.top - margin.bottom,
     g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -362,13 +361,13 @@ function drawGroupedBarChart(data) {
     .attr('class', 'axis')
     .call(d3.axisLeft(y))
     .append('text')
-    .attr('y', -40)
-    .attr('x', -height / 2)
+    .attr('y', -40) // Adjusted position of the y-axis label
+    .attr('x', -height / 2 - 20)
     .attr('fill', '#000')
     .attr('transform', 'rotate(-90)')
     .attr('dy', '0.71em')
     .attr('text-anchor', 'middle')
-    .text('Counts');
+    .text('Counts'); // Text for y-axis label
 
   g.append('g')
     .attr('class', 'axis')
@@ -437,8 +436,12 @@ function drawGroupedBarChart(data) {
       tooltip.transition()
         .duration(200)
         .style('opacity', 1);
-      tooltip.html(`Value: ${d.value}`)
-        .style('left', (event.pageX + 10) + 'px')
+      if (d.key === 'Passenger Volume') {
+        tooltip.html(`Value: ${d.value} ft<sup>3</sup>`)
+      } else {
+        tooltip.html(`Value: ${d.value} Cats`)
+      }
+      tooltip.style('left', (event.pageX + 10) + 'px')
         .style('top', (event.pageY - 28) + 'px');
     })
     .on('mouseout', function () {
@@ -464,10 +467,13 @@ function drawGroupedBarChart(data) {
     .style('border-radius', '8px')
     .style('pointer-events', 'none');
 }
+
+
+
 
 function drawLargeGroupedBarChart(data) {
-  const svg = d3.select('#barChart4').attr('width', 800).attr('height', 500),
-    margin = { top: 50, right: 20, bottom: 70, left: 30 },
+  const svg = d3.select('#barChart4').attr('width', 820).attr('height', 600),
+    margin = { top: 50, right: 20, bottom: 70, left: 120 },
     width = +svg.attr('width') - margin.left - margin.right,
     height = +svg.attr('height') - margin.top - margin.bottom,
     g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -565,8 +571,12 @@ function drawLargeGroupedBarChart(data) {
       tooltip.transition()
         .duration(200)
         .style('opacity', 1);
-      tooltip.html(`Value: ${d.value}`)
-        .style('left', (event.pageX + 10) + 'px')
+      if (d.key === 'Passenger Volume') {
+        tooltip.html(`Value: ${d.value} ft<sup>3</sup>`)
+      } else {
+        tooltip.html(`Value: ${d.value} Cats`)
+      }
+      tooltip.style('left', (event.pageX + 10) + 'px')
         .style('top', (event.pageY - 28) + 'px');
     })
     .on('mouseout', function () {
@@ -592,6 +602,7 @@ function drawLargeGroupedBarChart(data) {
     .style('border-radius', '8px')
     .style('pointer-events', 'none');
 }
+
 
 
 
@@ -600,8 +611,6 @@ function drawLargeGroupedBarChart(data) {
 <style scoped>
 
 .content{
-  padding-right: 5%;
-  padding-left: 1%;
   padding-bottom: 10%; /* fixes missing transitions */
 }
 

@@ -44,7 +44,7 @@ const steps = ref([
     The layout of this plot helps us visualize the distribution of sales volume across different makes, highlighting which makes are more dominant in the market based on the clustering of points. The beeswarm plot allows us to see the spread of sales data without any overlaps, making it easier to identify makes with high or low sales volumes. This visualization helps us spot patterns, trends, and outliers in the sales across the years. 
     The distribution provides clear insights into which vehicle makes have been leading sales at different times and which ones are less popular among consumers.` 
   },
-  { title: "Sunburst Chart", content: `Continuing with our exploration of vehicle sales data, let's delve into a visually engaging sunburst chart that breaks down car sales across the US by region and state. 
+  { title: "Sunburst Chart", content: `Continuing with our exploration of vehicle sales data, let's look into a sunburst chart that breaks down car sales across the US by region and state. 
   This interactive diagram not only highlights which areas are driving the most sales but also allows you to see how individual states contribute to their region's performance. By interacting with this chart, you can click on specific regions to drill down into state-level data, offering a more focused view of sales trends.` 
 },
 ]
