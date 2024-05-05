@@ -62,7 +62,7 @@ import { VCard, VCol, VRow } from 'vuetify/components'
             name: 'Rodolfo',
             role: 'Project Manager',
             bio: 'Me when error',
-            image: '/images/rod3.jpg',
+            image: '/images/huh-2.jpeg',
           },
           // ... Add more members as needed
         ]
