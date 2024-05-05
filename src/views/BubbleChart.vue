@@ -69,7 +69,7 @@ export default {
           size: data.size.map(s => Math.sqrt(s) * 0.2),
           color: colors,
           sizemode: 'area',
-          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.15)) / (50 ** 2)
+          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.3)) / (50 ** 2)
         },
         textposition: 'top center',
         name: 'Companies'
