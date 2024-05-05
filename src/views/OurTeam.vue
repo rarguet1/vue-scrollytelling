@@ -40,8 +40,8 @@ import { VCard, VCol, VRow } from 'vuetify/components'
             id: 1,
             name: 'Bryce',
             role: 'Technical writing & QA/QC',
-            bio: 'Short bio here.',
-            image: 'path_to_image',
+            bio: 'Im supposed to write my bio here.',
+            image: `/images/Troll-face.gif`,
           },
           {
             id: 2,
