@@ -56,7 +56,14 @@ export default {
     },
     updateChartLayout(animate = true) {
       const data = this.allData[this.currentYear];
-      const colors = Array(data.x.length).fill().map((_, i) => `hsl(${(i / data.x.length * 360)}, 100%, 70%)`); 
+      const maxEntries = Object.keys(this.allData).reduce((max, year) => Math.max(max, this.allData[year].x.length), 0);
+
+      const colors = Array(data.x.length).fill().map((_, i) => {
+        const hue = (i / data.x.length * 360); // Color hue from 0 to 360
+        const saturation = 50 + (50 * (i % 2)); // Alternate between 50% and 100% saturation
+        const lightness = 50 + (i % 2) * 15; // Alternate lightness for more variety
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      });
 
       const trace = {
         x: data.x,
@@ -66,10 +73,10 @@ export default {
         hoverinfo: 'text',
         hovertext: data.x.map((label, i) => `${label}<br>Market Share: ${data.y[i]}%<br>Yearly Sales:$${data.size[i]}`),
         marker: {
-          size: data.size.map(s => Math.sqrt(s) * 0.2),
+          size: data.size.map(s => Math.sqrt(s) * 0.25),
           color: colors,
           sizemode: 'area',
-          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.3)) / (50 ** 2)
+          sizeref: 2 * Math.max(...data.size.map(s => Math.sqrt(s) * 0.25)) / (60 ** 2)
         },
         textposition: 'top center',
         name: 'Companies'
@@ -78,21 +85,17 @@ export default {
       const layout = {
         title: 'Market Share by Company',
         xaxis: {
+          range: [-1, maxEntries + 1], // Fixed range based on the maximum number of entries
           title: 'Company',
           showgrid: false,
           zeroline: false,
-          showticklabels: false,
-          range: [-2, data.x.length + 1] 
+          showticklabels: false
         },
         yaxis: {
           title: 'Market Share (%)',
           showline: true
         },
         showlegend: false,
-        legend: {
-          title: { text: 'Sizes' },
-          itemsizing: 'constant'
-        },
         autosize: true,
         margin: { l: 40, r: 0, t: 40, b: 40 },
         hovermode: 'closest',
@@ -105,10 +108,10 @@ export default {
         }, {
           transition: {
             duration: 1000,
-            easing: 'exp-in-out'
+            easing: 'cubic-in-out'
           },
           frame: {
-            duration: 400
+            duration: 500
           }
         });
       } else {
@@ -119,13 +122,16 @@ export default {
       this.updateChartLayout(true);
     }
   }
+
 };
 </script>
 
 <style scoped>
 .slider {
-  width: 30%; /* Maintain the width, adjust if needed */
-  margin: 20px 0px 20px 30px; /* Top and bottom margins with right margin as auto and specific left margin */
+  width: 30%;
+  /* Maintain the width, adjust if needed */
+  margin: 0px 10px 20px 30px;
+  /* Top and bottom margins with right margin as auto and specific left margin */
   display: block;
 }
 
