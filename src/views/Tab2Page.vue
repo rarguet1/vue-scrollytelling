@@ -31,24 +31,37 @@ const currentStep = ref(null);
 
 // This is where you can add the titles for your sections
 const steps = [
+{ title: 'Misleading Visualizations', 
+content: `A misleading visualization in data visualization refers to a graphical representation of data that inaccurately portrays information. This misrepresentation can occur intentionally or unintentionally and may lead viewers to draw incorrect conclusions or misunderstand the underlying data.
+<ul>
+      <img src="/images/mis_theme_page.png" alt="theme" />
+    </ul>`},
+{ title: 'Exaggerated proportion of Toyota Sales',
+  content: `This visualization is kind of misleading, because it is exaggerating Toyota sales by comparing it with all other car sales. The users will assume that Toyota has major proportion of sales compared to other car sales.
+    <ul>
+      <iframe src="/images/mis1_pie.html" width="800" height="800"></iframe>
+      </ul>`},
+      { title: 'Total sales vs Average sales ',
+  content: `This visualization is kind of misleading, because it is using dual Y-axis and both the scales are different. It is difficult to identify and compare the actual values. 
+    <ul>
+      <iframe src="/images/mis2_bl.html" width="1000" height="600"></iframe>
+      </ul>`},
+      {title: 'Some other interactive visualizations made for the project'},
   { title: 'Most common Makes, Models and Body types', 
   content: ` This is Sunburst chart with Makes as upper layer. It's an interactive vis, once you click on Ford (for exacmple) the sunburst becomes for Ford .
-   The second image shows how it looks. Similarly the hierarchy continues for everything.
-            <ul>
-              <li> <img src="/images/Capture-1.PNG" alt="Sunburst chart"></li>
-              <li> <img src="/images/Capture-1.1.PNG" alt="Sunburst chart"></li>
-            </ul>
-            `
+      <ul>
+        <iframe src="/images/vis1_sunburst.html" width="800" height="800"></iframe>
+      </ul>`
   },
   { title: 'Top 10 vehicle sales',
    content: `This is Stacked bar chart which shows sales of Top 10 vechicle makes over the time period
-            <ul>
-              <li> <img src="/images/Capture3.PNG" alt="Stacked Barchart"></li>
-            </ul>
+      <ul>
+        <iframe src="/images/vis2_stackedbar.html" width="1000" height="1000"></iframe>
+      </ul>
    
             ` 
   },
-  { title: 'Step 3', content: 'Content for step 3.' },
+  
 ];
 onMounted(() => {
   currentStep.value = '1';  // Set the first step active
@@ -67,14 +80,14 @@ function handleStepEnter({ element }) {
 }
 
 .content{
-  padding-right: 5%;
-  padding-left: 1%;
+  padding: 0 64px;
+
 }
 
 .step {
-  padding-top: 50px;
-  min-height: 400px;
-  margin-bottom: 100vh;
+  margin: 0;
+  padding: 24px;
+  width: 100%;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateY(20px); 
   opacity: 0.5; /* Start with a lower opacity */
