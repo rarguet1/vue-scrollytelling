@@ -1,15 +1,18 @@
 <script setup>
+// Import the necessary components
 import { ref, onMounted } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import { VCol } from 'vuetify/components';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import {Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
+// slides for the streamgraph
 const slides = [
 "1990_streamgraph.png",
 "1991_streamgraph.png",
@@ -39,6 +42,7 @@ const slides = [
 "2015_streamgraph.png",
 ];
 
+// Initialize the current step
 const currentStep = ref(null);
 
 // This is where you can add the titles for your sections
@@ -61,6 +65,18 @@ const steps = [
     <br><br><br><br>
     Starting with....
     `
+  },
+  { 
+    title: 'Wait, Wait, Wait! What is our project about?',
+    content: `<img src="/images/jalen/wait.gif" alt="wait gif" style="border-radius: 5%; width="100%" />`
+  },
+  {
+    title: 'Automotive Industry',
+    content: `Our project is about exploring the automotive market. Bringing insights toward <b>first-time car owners</b> or <b>dealers</b> on how cars are marketed throughout the U.S. to better inform consumers. Where we've used a dataset containing information from 1990 up to 2015. Ranging from important data like car makes, models, and car year. An other obsure data, like interior color, vin numbers, and sale date. Some of the <b>most important data</b> came from the sale prices, car makes, and Manheim Market Report (MMR), which is a metric that indicates the movement of a car's price in the market. The dataset is sourced from <b>Kaggle</b>, where the other had collected data through consumer data from a government site pertaining to sale transactions.`
+  },
+  { 
+    title: 'Now with that explained let\'s move on to the first visualization!',
+    content: ``
   },
   { 
     title: 'Streamgraph',
@@ -131,23 +147,28 @@ const steps = [
   },
 ];
 
+// Function to handle the step enter event
 onMounted(() => {
   currentStep.value = '0';  // Set the first step active
 });
 
+// Function to handle the step enter event
 function handleStepEnter({ element }) {
   currentStep.value = element.dataset.stepNo;
 }
 </script>
 
+ <!-- Template for the Tab3Page component -->
 <template>
   <div>
+    <!-- VueScrollama component to handle the scroll events -->
     <VueScrollama
       :debug="false" 
       :offset="0.2"
       @step-enter="handleStepEnter"
       class="scrollama-container"
     >
+    <!-- Loop through the steps and display the content -->
       <v-col
         v-for="(step, index) in steps"
         :key="index"
@@ -155,10 +176,13 @@ function handleStepEnter({ element }) {
         :class="{ 'step-active': currentStep === (index + 1).toString() }"
         :data-step-no="index + 1"
       >
+      <!-- Display the title and content of each step -->
         <h2>{{ step.title }}</h2>
         <div v-html="step.content" class="content"></div> 
-        <div v-if="index === 4" class="streamgraph">
+      <!-- Display the streamgraph and choropleth map at specific steps -->
+        <div v-if="index === 7" class="streamgraph">
           <img src="../assets/Screenshot 2024-05-03 123139.png" alt="streamgraph" width="90%" />
+          <!-- Swiper component for the streamgraph slides -->
           <Swiper
           :modules="[Navigation, Pagination, Autoplay]"
           :pagination="{ clickable: true }"
@@ -174,7 +198,7 @@ function handleStepEnter({ element }) {
           <p><b>Magnitude Channel</b>: Position, Area</p>
           <p><b>Identity Channel</b>: Spatial position, Color Hue</p>
         </div> 
-        <div v-if="index === 7" class="choropleth-map">
+        <div v-if="index === 10" class="choropleth-map">
           <iframe src="/images/ChoroplethMap.html"></iframe>
           <div>
             <p>
@@ -190,6 +214,7 @@ function handleStepEnter({ element }) {
   </div>
 </template>
 
+<!-- Add the styles for the Tab3Page component -->
 <style scoped>
 .scrollama-container {
   margin: 0;
