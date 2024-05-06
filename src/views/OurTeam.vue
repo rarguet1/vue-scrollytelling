@@ -9,13 +9,13 @@
         <v-card class="mx-auto" max-width="344px" outlined> <!-- Use mx-auto to center the card -->
           <v-list-item three-line>
             <v-list-item-content>
+              <v-list-item-avatar class="profile-container" tile color="grey">
+                <img class="profile-pic" :src="member.image" alt="Profile" />
+              </v-list-item-avatar>
               <div class="overline mb-4">{{ member.role }}</div>
               <v-list-item-title class="headline mb-1">{{ member.name }}</v-list-item-title>
               <v-list-item-subtitle>{{ member.bio }}</v-list-item-subtitle>
             </v-list-item-content>
-            <v-list-item-avatar tile size="80" color="grey">
-              <img :src="member.image" alt="Profile" width="160px"/>
-            </v-list-item-avatar>
           </v-list-item>
         </v-card>
       </v-col>
@@ -79,5 +79,20 @@ import { VCard, VCol, VRow } from 'vuetify/components'
 
   .vrow{
     padding-left: 25%;
+  }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+
+  .profile-pic {
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
   }
   </style>
