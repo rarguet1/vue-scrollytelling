@@ -14,7 +14,7 @@
               <v-list-item-subtitle>{{ member.bio }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="80" color="grey">
-              <img :src="member.image" alt="Profile"/>
+              <img :src="member.image" alt="Profile" width="124px"/>
             </v-list-item-avatar>
           </v-list-item>
         </v-card>
@@ -54,8 +54,8 @@ import { VCard, VCol, VRow } from 'vuetify/components'
             id: 3,
             name: 'Jalen',
             role: 'Resource manager',
-            bio: 'Short bio here.',
-            image: 'path_to_image',
+            bio: '"I\'m here to serve"',
+            image: '/images/cute_lol.jpg',
           },
           {
             id: 4,
@@ -79,5 +79,9 @@ import { VCard, VCol, VRow } from 'vuetify/components'
 
   .vrow{
     padding-left: 25%;
+  }
+
+  .v-list-item-avatar {
+    height: 80px;
   }
   </style>
