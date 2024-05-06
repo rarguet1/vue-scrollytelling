@@ -47,8 +47,8 @@ import { VCard, VCol, VRow } from 'vuetify/components'
             id: 2,
             name: 'Daya',
             role: 'Coding Monkey',
-            bio: 'Short bio here.',
-            image: 'path_to_image',
+            bio: 'A CS grad sudent.',
+            image: '/images/web_pp.jpg',
           },
           {
             id: 3,
