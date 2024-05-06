@@ -14,7 +14,7 @@
               <v-list-item-subtitle>{{ member.bio }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="80" color="grey">
-              <img :src="member.image" alt="Profile" width="124px"/>
+              <img :src="member.image" alt="Profile" width="160px"/>
             </v-list-item-avatar>
           </v-list-item>
         </v-card>
@@ -79,9 +79,5 @@ import { VCard, VCol, VRow } from 'vuetify/components'
 
   .vrow{
     padding-left: 25%;
-  }
-
-  .v-list-item-avatar {
-    height: 80px;
   }
   </style>
